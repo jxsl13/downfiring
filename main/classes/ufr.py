@@ -31,13 +31,13 @@ class Ufr:
 		self.parse_meta_data()
 		if len(self.error_messages) > 0:
 			self.ok = False
-
-		self.name = self.data_dict['comment']['name']
-		self.enc_filename = self.data_dict['name']
-		self.description = self.data_dict['comment']['description']
-		self.price = self.data_dict['comment']['price']
-		self.size = self.data_dict['length']
-		self.owner = self.data_dict['comment']['owner']
+		if self.ok:	
+			self.name = self.data_dict['comment']['name']
+			self.enc_filename = self.data_dict['name']
+			self.description = self.data_dict['comment']['description']
+			self.price = self.data_dict['comment']['price']
+			self.size = self.data_dict['length']
+			self.owner = self.data_dict['comment']['owner']
 
 
 	def __del__(self):
