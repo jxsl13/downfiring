@@ -1,0 +1,21 @@
+{% extends 'main/skel.html' %}
+{% load static %}
+{% block title %}Upload UFR{% endblock %}
+{% block custom_css %}<link rel="stylesheet" type="text/css" href="{% static 'main/css/upload.css' %}">{% endblock %}
+{% block content %}
+  <div class="flex-wrap">
+    <h1 class="text-center">Upload</h1>
+    
+    <form class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" method="POST" action="/upload" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <div class="custom-file">
+        <input class="custom-file-input" type="file" id="ufr-file" name="ufr-file" accept=".ufr" required>
+        <label class="custom-file-label" for="ufr-file">Choose file</label>
+        
+      </div>
+      <button type="submit" class="btn btn-primary col-12 mt-3">Upload!</button>
+    </form>
+  </div>
+  
+{% endblock %}
