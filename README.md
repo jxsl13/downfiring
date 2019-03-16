@@ -1,5 +1,4 @@
-# Downfiring [![Donate with Ethereum](https://en.cryptobadges.io/badge/micro/0x66a1a316413A937FBf9b539aa47F65DCB04A361B)](https://en.cryptobadges.io/donate/0x66a1a316413A937FBf9b539aa47F65DCB04A361B)
-
+# Downfiring [![Donate with Ethereum](https://en.cryptobadges.io/badge/micro/0x66a1a316413A937FBf9b539aa47F65DCB04A361B)](https://en.cryptobadges.io/donate/0x66a1a316413A937FBf9b539aa47F65DCB04A361B) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q344HYP6A5DMN&source=url)
 
 ## What is Downfiring supposed to be?
 An Upfiring(.ufr) file hosting solution based on Django.
