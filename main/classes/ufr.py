@@ -4,8 +4,20 @@ import json
 
 
 class Ufr:
-	"""docstring for Ufr"""
+	"""
+		Ufr takes a django UploadedFile and retrieves all of the meta data from the
+		file. Ufr files are like torrent files, but with the exception, that they
+		are handled differently. A seeder can seed the files without being able to 
+		actually be able to use the conents, because those files are encoded.
+		In order to decrypt the files, one needs to pay the price asked by the first
+		seeder/uploader
+	"""
 	def __init__(self, uploaded_file: UploadedFile):
+		"""
+			inits meta data from file.
+			sets self.ok to True if the file is actually a ufr file
+			and to False otherwise.
+		"""
 		super(Ufr, self).__init__()
 		self.ok = True
 		self.error_messages = []
@@ -29,9 +41,9 @@ class Ufr:
 		}
 
 		self.parse_meta_data()
-		if len(self.error_messages) > 0:
+		if len(self.error_messages) != 0:
 			self.ok = False
-		if self.ok:	
+		else:
 			self.name = self.data_dict['comment']['name']
 			self.enc_filename = self.data_dict['name']
 			self.description = self.data_dict['comment']['description']
@@ -52,10 +64,9 @@ class Ufr:
 
 		last_seen_key = ''
 
+		# we only look at the first chunk
 		for chunk in self.file.chunks():
-
 			try:
-				
 				data = [bytes([byte]) for byte in chunk]
 				if data[0] != b'd':
 					raise Exception("Invalid file: Header does not start with d")
@@ -68,7 +79,6 @@ class Ufr:
 					elem = data[i]
 
 					if elem.isdigit() :
-						# 
 						token_len.append(elem)
 
 					elif elem == b':' and len(token_len) != 0:
@@ -158,7 +168,7 @@ def update_data_dictionary(data_dict, key, value):
 						
 def parse_integer(start_idx: int, data_array) -> (int, int):
 	"""
-	@brief      Parse integer from file
+	@brief      Parse integer from bytearray
 	
 	@param      start_idx   The start index, must point to the first digit of the integer
 	@param      data_array  The data array
