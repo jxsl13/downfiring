@@ -23,6 +23,12 @@ class Ufr:
 		self.error_messages = []
 		# UFR file info
 		self.file = uploaded_file
+
+		# ignore files bigger than 5MB
+		if self.file.size > 5242880:
+			self.ok = False
+			return
+
 		self.ufr_filename = self.file.name
 		
 		# UFR file meta data
