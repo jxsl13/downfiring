@@ -14,7 +14,7 @@
         
         <div class="custom-file">
           <input class="custom-file-input" type="file" id="ufr-file" name="ufr-file" accept=".ufr" required>
-          <label class="custom-file-label" for="ufr-file">Choose file</label>
+          <label id="ufr-file-label"class="custom-file-label" for="ufr-file">Choose file</label>
           
         </div>
         <button type="submit" class="btn btn-primary col-12 mt-3">Upload!</button>
@@ -24,3 +24,6 @@
   </div>
   
 {% endblock %}
+{% block custom_js_bottom %}
+  <script src="{% static 'main/js/upload.js' %}" ></script>
+{% endblock%}
