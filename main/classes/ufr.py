@@ -1,7 +1,7 @@
 from django.core.files.uploadedfile import UploadedFile
 from django.core.files.storage import FileSystemStorage
 import json
-
+from . import hash
 
 class Ufr:
 	"""
@@ -56,6 +56,8 @@ class Ufr:
 			self.price = self.data_dict['comment']['price']
 			self.size = self.data_dict['length']
 			self.owner = self.data_dict['comment']['owner']
+			self.hashes = hash.get_hashsums(self.file)
+		
 
 
 	def __del__(self):

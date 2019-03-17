@@ -25,17 +25,17 @@ def upload(request: HttpRequest):
 	if request.method == 'POST':
 		file = ""
 		try:
-			file = request.FILES['ufr-file']
+			# InMemoryUploadedFile alternatively one could use TemporaryUploadedFile
+			# but we are handling rather small files here, so no need for that at he moment.
+			file = request.FILES['ufr-file'] 
 		except Exception as e:
-			print("No file uploaded")
 			messages.error(request, "No file uploaded")
 			return redirect("main:homepage")
 
-		ufr_meta_data = Ufr(file)
-		
-		if not ufr_meta_data.ok:
+		ufr_file = Ufr(file)
+		if not ufr_file.ok:
 			messages.error(request,'Invalid file format passed. Please upload a valid .ufr file.')
 		else:
-			messages.info(request,'File uploaded successfully!')				
+			messages.info(request,f'File uploaded successfully: {ufr_file.ufr_filename} MD5 Hash: {ufr_file.hashes}')
 	return redirect("main:homepage")
 		
